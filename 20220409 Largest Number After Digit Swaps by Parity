@@ -1,0 +1,32 @@
+/**
+ * @param {number} num
+ * @return {number}
+ */
+ var largestInteger = function(num) {
+    let oddNumbers = [];
+    let evenNumbers = [];
+    let numberInString = num.toString();
+
+    for (let digit of numberInString) {
+        if (parseInt(digit) % 2 === 0) {evenNumbers.push(parseInt(digit))}
+        else {oddNumbers.push(parseInt(digit))}
+    }
+
+    oddNumbers.sort((a, b) => b - a);
+    evenNumbers.sort((a, b) => b - a);
+    // console.log(oddNumbers, evenNumbers)
+
+    let result = []
+    let oddPointer = 0
+    let evenPointer = 0
+    for (let digit of numberInString) {
+        if (parseInt(digit) % 2 === 0) {result.push(evenNumbers[evenPointer]); evenPointer++}
+        else {result.push(oddNumbers[oddPointer]); oddPointer++}
+    }
+    // console.log(result.join(""))
+
+    return parseInt(result.join(""));
+};
+
+console.log(largestInteger(65875))
+
